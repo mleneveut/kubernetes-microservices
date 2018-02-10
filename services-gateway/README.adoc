@@ -1,0 +1,18 @@
+= Services-gateway
+
+A Spring Boot Gateway working with Kubernetes services.
+
+Simply add your service in the application.yml :
+
+----
+zuul:
+  routes:
+    services-i18n:
+      path: /services-first/**
+      url: http://services-first
+----
+
+The "services-first" in the url parameter should be the name of the Kubernetes service.
+
+Or add it in Kubernetes ConfigMaps.
+

@@ -1,0 +1,3 @@
+maxReplicas: 2
+minReplicas: 2
+targetCPUUtilizationPercentage: 50

@@ -1,0 +1,22 @@
+zuul:
+  service:
+    name: ${project.artifactId}
+
+spring:
+  application:
+    name: services-gateway
+  cloud:
+    config:
+      enabled: false
+      discovery:
+        enabled: false
+    kubernetes:
+      reload:
+        enabled: true
+
+server:
+  port: 8080
+
+info.app:
+  version: @project.version@
+  name: @project.name@

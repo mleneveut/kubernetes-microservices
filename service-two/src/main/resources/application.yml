@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: service-two
+  cloud:
+    config:
+      enabled: false
+      discovery:
+        enabled: false
+    kubernetes:
+      reload:
+        enabled: true
+        strategy: refresh
+
+server:
+  port: 8080
+
+info.app:
+  version: @project.version@
+  name: @project.name@
+
+service-two:
+  customStringParam1: Value for param 1
+  isCustomParam2: false
+  customIntParam3: 100

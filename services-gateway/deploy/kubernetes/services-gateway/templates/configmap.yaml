@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Release.Name}}
+  labels:
+    app: {{.Chart.Name}}
+    release: {{.Release.Name}}
+data:
+  application.yml: |-
+    zuul:
+      routes:
+        service-one:
+          url: http://service-one
+          path: /one/**

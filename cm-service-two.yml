@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-two
+  labels:
+    app: service-two
+data:
+  application.yml: |-
+    service-two:
+      customStringParam1: param1
+      isCustomParam2: true
+      customIntParam3: 200

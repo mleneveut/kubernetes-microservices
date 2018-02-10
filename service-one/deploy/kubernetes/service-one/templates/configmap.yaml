@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Release.Name}}
+  labels:
+    app: {{.Chart.Name}}
+    release: {{.Release.Name}}
+data:
+  application.yml: |-
+{{- $env := required "no environment specified (use --set Env=XXX)" .Values.Env}}
+{{- $file := base .Template.Name | list "env" $env | join "/"}}
+{{.Files.Get $file | required (cat (list $file "not found")) | indent 4}}

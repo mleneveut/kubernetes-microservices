@@ -1,0 +1,4 @@
+apiVersion: v1
+description: micro-service gateway
+name: services-gateway
+version: 1.0.0

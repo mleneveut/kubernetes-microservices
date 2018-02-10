@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}
+  labels:
+    app: {{.Chart.Name}}
+    release: {{.Release.Name}}
+    run: {{.Release.Name}}
+spec:
+  replicas: {{.Values.minReplicas}}
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: {{.Chart.Name}}
+        release: {{.Release.Name}}
+        run: {{.Release.Name}}
+    spec:
+      containers:
+      - image: {{required "missing docker image in .Values.DockerImage" .Values.DockerImage}}
+        name: {{.Release.Name}}
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 3
